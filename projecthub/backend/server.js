@@ -276,4 +276,4 @@ io.on('connection', (socket) => {
   socket.on('leave:project', (id) => socket.leave(`project:${id}`));
 });
 
-server.listen(PORT, () => console.log(`✅ ProjectHub running on http://localhost:${PORT}`));
+server.listen(PORT, () => console.log(`ProjectHub running on http://localhost:${PORT}`));

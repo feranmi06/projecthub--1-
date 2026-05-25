@@ -150,7 +150,7 @@ export default function TaskModal({ task, projectId, defaultStatus, members, onC
             </button>
           </form>
 
-          {/* Right: Comments (only for existing tasks) */}
+          
           {!isNew && (
             <div style={styles.commentsCol}>
               <h3 style={styles.commentsTitle}>Comments</h3>

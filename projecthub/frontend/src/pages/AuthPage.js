@@ -47,7 +47,7 @@ export default function AuthPage() {
               <input
                 style={styles.input}
                 type="text"
-                placeholder="John Doe"
+                placeholder="Oluwaferanmi Adesida"
                 value={form.name}
                 onChange={e => setForm({ ...form, name: e.target.value })}
                 required
@@ -59,7 +59,7 @@ export default function AuthPage() {
             <input
               style={styles.input}
               type="email"
-              placeholder="you@example.com"
+              placeholder="oluwaferanmiadesida@gmail.com"
               value={form.email}
               onChange={e => setForm({ ...form, email: e.target.value })}
               required
