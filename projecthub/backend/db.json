@@ -1,7 +1,30 @@
 {
-  "users": [],
-  "projects": [],
-  "members": [],
+  "users": [
+    {
+      "id": 1,
+      "name": "Iyinoluwa Don-Taiwo",
+      "email": "iyinoluwadontaiwo@gmail.com",
+      "password": "$2a$10$qD4MdV6CyaZf9nCnJB/k/.rTdA5yx5oUic9G5TIXr.SUgE9vJBjgK",
+      "created_at": "2026-05-25T21:17:41.459Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "codealpha tasks",
+      "description": "machine learning\n",
+      "owner_id": 1,
+      "color": "#6366f1",
+      "created_at": "2026-05-25T21:18:11.418Z"
+    }
+  ],
+  "members": [
+    {
+      "project_id": 1,
+      "user_id": 1,
+      "role": "owner"
+    }
+  ],
   "tasks": [],
   "comments": [],
   "notifications": []

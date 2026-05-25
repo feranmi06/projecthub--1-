@@ -42,8 +42,8 @@ export default function Dashboard() {
             <span style={styles.logoText}>ProjectHub</span>
           </div>
           <nav>
-            <div style={styles.navItem}>📋 Projects</div>
-            <div style={{ ...styles.navItem, color: '#9ca3af' }}>📊 My Tasks</div>
+            <div style={styles.navItem}>Projects</div>
+            <div style={{ ...styles.navItem, color: '#9ca3af' }}>My Tasks</div>
           </nav>
         </div>
         <div style={styles.sidebarBottom}>
@@ -122,7 +122,7 @@ export default function Dashboard() {
                 <label style={styles.label}>Project Name *</label>
                 <input
                   style={styles.input}
-                  placeholder="e.g. Website Redesign"
+                  placeholder="e.g. CodeAlpha Tasks"
                   value={form.name}
                   onChange={e => setForm({ ...form, name: e.target.value })}
                   required autoFocus
