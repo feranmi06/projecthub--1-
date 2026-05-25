@@ -20,7 +20,7 @@ const JWT_SECRET = 'supersecretkey123';
 const PORT = 5000;
 const DB_FILE = path.join(__dirname, 'db.json');
 
-// ── JSON "database" helpers ──────────────────────────────────────────────────
+// JSON "database" helpers 
 function readDB() {
   if (!fs.existsSync(DB_FILE)) {
     const empty = { users: [], projects: [], members: [], tasks: [], comments: [], notifications: [] };
@@ -36,7 +36,7 @@ function nextId(arr) {
   return arr.length === 0 ? 1 : Math.max(...arr.map(x => x.id)) + 1;
 }
 
-// ── AUTH MIDDLEWARE ──────────────────────────────────────────────────────────
+// AUTH MIDDLEWARE 
 function auth(req, res, next) {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token' });
@@ -44,7 +44,7 @@ function auth(req, res, next) {
   catch { res.status(401).json({ error: 'Invalid token' }); }
 }
 
-// ── AUTH ROUTES ──────────────────────────────────────────────────────────────
+// AUTH ROUTES 
 app.post('/api/auth/register', (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) return res.status(400).json({ error: 'All fields required' });
@@ -76,13 +76,13 @@ app.get('/api/auth/me', auth, (req, res) => {
   res.json(safeUser);
 });
 
-// ── USER ROUTES ──────────────────────────────────────────────────────────────
+// USER ROUTES 
 app.get('/api/users', auth, (req, res) => {
   const db = readDB();
   res.json(db.users.map(({ password: _, ...u }) => u));
 });
 
-// ── PROJECT ROUTES ───────────────────────────────────────────────────────────
+// PROJECT ROUTES 
 app.get('/api/projects', auth, (req, res) => {
   const db = readDB();
   const myProjectIds = [
@@ -155,7 +155,7 @@ app.post('/api/projects/:id/members', auth, (req, res) => {
   res.json({ message: 'Added' });
 });
 
-// ── TASK ROUTES ──────────────────────────────────────────────────────────────
+// TASK ROUTES 
 app.get('/api/projects/:id/tasks', auth, (req, res) => {
   const db = readDB();
   const pid = parseInt(req.params.id);
@@ -229,7 +229,7 @@ app.delete('/api/tasks/:id', auth, (req, res) => {
   res.json({ message: 'Deleted' });
 });
 
-// ── COMMENT ROUTES ───────────────────────────────────────────────────────────
+// COMMENT ROUTES 
 app.get('/api/tasks/:id/comments', auth, (req, res) => {
   const db = readDB();
   const tid = parseInt(req.params.id);
@@ -256,7 +256,7 @@ app.post('/api/tasks/:id/comments', auth, (req, res) => {
   res.json(fullComment);
 });
 
-// ── NOTIFICATION ROUTES ──────────────────────────────────────────────────────
+// NOTIFICATION ROUTES 
 app.get('/api/notifications', auth, (req, res) => {
   const db = readDB();
   res.json(db.notifications.filter(n => n.user_id === req.user.id).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 20));
@@ -269,7 +269,7 @@ app.put('/api/notifications/read', auth, (req, res) => {
   res.json({ message: 'Done' });
 });
 
-// ── WEBSOCKET ────────────────────────────────────────────────────────────────
+//  WEBSOCKET 
 io.on('connection', (socket) => {
   socket.on('join:project', (id) => socket.join(`project:${id}`));
   socket.on('join:user', (id) => socket.join(`user:${id}`));
